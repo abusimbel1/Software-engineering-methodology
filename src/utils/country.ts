@@ -51,7 +51,7 @@ export class Country {
             isIntegerInBounds(yh),
             isCorrectLowHighRange(xl, xh),
             isCorrectLowHighRange(yl, yh)]
-            .every((result) => result === true);
+            .every((result) => result);
     }
 }
 

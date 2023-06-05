@@ -76,11 +76,11 @@ export class MapGrid {
     }
 
     addCitiesToCountries(): void {
-        const coinTypes = this.countries.map((country) => country.name);
-        this.countries.forEach((country, countryIndex) => {
-            for (let x = country.coordinates.xl; x <= country.coordinates.xh; x += 1) {
-                for (let y = country.coordinates.yl; y <= country.coordinates.yh; y += 1) {
-                    const city = new City(coinTypes, country.name);
+        const coinTypes = this.countries.map(({name}) => name);
+        this.countries.forEach(({coordinates, name}, countryIndex) => {
+            for (let x = coordinates.xl; x <= coordinates.xh; x += 1) {
+                for (let y = coordinates.yl; y <= coordinates.yh; y += 1) {
+                    const city = new City(coinTypes, name);
                     this.countriesGrid.set({ x, y }, city);
                     this.countries[countryIndex].addCity(city);
                 }

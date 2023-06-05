@@ -1,5 +1,4 @@
-const INITIAL_COINS = 1000000;
-const PORTION = INITIAL_COINS / 1000;
+import { INITIAL_COINS, PORTION } from "@app/utils/map";
 
 export class City {
     neighbors: City[];

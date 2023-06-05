@@ -5,8 +5,8 @@ export const calculateCountry = (countriesStrings: string[]) => {
     try {
         const countries: Country[] = countriesStrings.map((countryString) => Country.parseCountryString(countryString));
 
-        const res = new MapGrid(countries).startDiffusionEmulation();
-        console.log(MapGrid.diffusionResultToString(res));
+        const diffusionEmulationResult = new MapGrid(countries).startDiffusionEmulation();
+        console.log(MapGrid.diffusionResultToString(diffusionEmulationResult));
     } catch (e: any) {
         console.error(e?.message || JSON.stringify(e));
     }
