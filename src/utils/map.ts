@@ -1,6 +1,9 @@
 import City from '@app/utils/city';
 import Country from '@app/utils/country';
 import GridUtil from '@app/utils/gridUtil';
+import { deepEqual } from 'assert';
+import { cloneDeep, isEqual } from 'lodash';
+import { abort } from 'process';
 
 export const INITIAL_COINS = 1000000;
 export const PORTION = INITIAL_COINS / 1000;
@@ -93,6 +96,8 @@ export class MapGrid {
         const result = new Map<string, number>();
         let currentDay = 0;
 
+        let previousCountriesState = cloneDeep(this.countries)
+
         do {
             this.countries.forEach((country) => {
                 country.cities.forEach((city) => {
@@ -111,6 +116,13 @@ export class MapGrid {
                     city.updateCoins();
                 });
             });
+
+            if (isEqual(previousCountriesState, this.countries)) {
+                throw new Error('Can not find way to spread...')
+                
+            } else {
+                previousCountriesState = cloneDeep(this.countries)
+            }
             currentDay += 1;
         } while (!this.isCompleted());
 
